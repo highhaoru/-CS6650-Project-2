@@ -1,4 +1,4 @@
-package allclasrpc;
+package rpc;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -16,15 +16,15 @@ public class RmiRegister {
             System.exit(1);
         }
 
-        int portNumber = Integer.valueOf(args[0]).intValue();
+        int portNo = Integer.parseInt(args[0]);
 
         try{
-            ClientServerInterface messageServerObject = new ClientServerInterfaceImpl();
-            Registry registry = LocateRegistry.createRegistry(portNumber);
+            ClientServerInterface messageServerObject = new ClientServer();
+            Registry registry = LocateRegistry.createRegistry(portNo);
             registry.bind("ClientServerInterfaceImpl", messageServerObject);
             LOGGER.info("Object binding is done");
 
-        }catch(Exception ex){
+        }catch(Exception ignored){
 
         }
 

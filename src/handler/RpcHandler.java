@@ -1,23 +1,17 @@
-package handle;
+package handler;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 import java.util.Set;
 
-/**
- * This class reads the properties from properties file
- *
- * @author Manoj Bisht
- *
- */
-public class RpcPropertiesHandler {
+public class RpcHandler {
 
     private final Properties configProp = new Properties();
 
-    private RpcPropertiesHandler() {
+    private RpcHandler() {
 
-        InputStream in = this.getClass().getClassLoader().getResourceAsStream("RpcProgramming.properties");
+        InputStream in = this.getClass().getClassLoader().getResourceAsStream("Rpc.properties");
         try {
             configProp.load(in);
         } catch (IOException e) {
@@ -26,10 +20,10 @@ public class RpcPropertiesHandler {
     }
 
     private static class InstanceHolder {
-        private static final RpcPropertiesHandler INSTANCE = new RpcPropertiesHandler();
+        private static final RpcHandler INSTANCE = new RpcHandler();
     }
 
-    public static RpcPropertiesHandler getInstance() {
+    public static RpcHandler getInstance() {
         return InstanceHolder.INSTANCE;
     }
 

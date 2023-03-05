@@ -1,62 +1,54 @@
-package allclasrpc;
+package rpc;
 
-import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import handle.MessageStoreHelper;
+import handler.MsgStoreHelper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class ClientServerInterfaceImpl extends UnicastRemoteObject implements ClientServerInterface, Runnable {
+public class ClientServer extends UnicastRemoteObject implements ClientServerInterface, Runnable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private Thread t;
 
-    private static final Logger LOGGER = LogManager.getLogger(ClientServerInterfaceImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(ClientServer.class);
 
     private String requestType;
     private String key;
-    private String msgValue;
+    private String msgVal;
     private String returnMsg;
 
-    public ClientServerInterfaceImpl() throws RemoteException {
+    public ClientServer() throws RemoteException {
     }
 
-    public ClientServerInterfaceImpl(String requestType, String key, String msgValue) throws RemoteException {
+    public ClientServer(String requestType, String key, String msgVal) throws RemoteException {
 
         this.requestType = requestType;
         this.key = key;
-        this.msgValue = msgValue;
+        this.msgVal = msgVal;
     }
 
-    public void processPutRequest(String key, String value) throws RemoteException {
+    public void put(String key, String value) throws RemoteException {
         LOGGER.info("key is:" + key + " Value is:" + value);
-        ClientServerInterfaceImpl serverThread = new ClientServerInterfaceImpl("PUT", key, value);
+        ClientServer serverThread = new ClientServer("PUT", key, value);
         serverThread.start();
 
     }
 
-    public String processGetRequest(String key) throws RemoteException {
+    public String get(String key) throws RemoteException {
         LOGGER.info("key is: " + key);
-        ClientServerInterfaceImpl serverThread = new ClientServerInterfaceImpl("GET", key, "");
+        ClientServer serverThread = new ClientServer("GET", key, "");
         serverThread.start();
         return this.returnMsg;
 
     }
 
-    public void processDeleteRequest(String key) throws RemoteException {
+    public void delete(String key) throws RemoteException {
         LOGGER.info("key is: " + key);
-        ClientServerInterfaceImpl serverThread = new ClientServerInterfaceImpl("DEL", key, "");
+        ClientServer serverThread = new ClientServer("DEL", key, "");
         serverThread.start();
 
     }
@@ -71,29 +63,28 @@ public class ClientServerInterfaceImpl extends UnicastRemoteObject implements Cl
 
     @Override
     public void run() {
-        LOGGER.info("Run New thread " + Thread.currentThread().getName() + " is started..");
+        LOGGER.info("Run New thread: " + Thread.currentThread().getName() + " is started..");
         LOGGER.debug("requestType: " + requestType + " msgKey" + this.key);
 
         try {
-            if (this.requestType != "" && this.requestType.equalsIgnoreCase("PUT")) {
-                addToMsgStore(this.key, this.msgValue);
-            } else if (this.requestType != "" && this.requestType.equalsIgnoreCase("GET")) {
-                getFromMsgStore(this.key);
-            } else if (requestType != "" && requestType.equalsIgnoreCase("DEL")) {
-                deleteFromMsgStore(this.key);
+            if (!Objects.equals(this.requestType, "") && this.requestType.equalsIgnoreCase("PUT")) {
+                addTo(this.key, this.msgVal);
+            } else if (!this.requestType.equals("") && this.requestType.equalsIgnoreCase("GET")) {
+                getFrom(this.key);
+            } else if (!requestType.equals("") && requestType.equalsIgnoreCase("DEL")) {
+                deleteFrom(this.key);
             } else {
                 LOGGER.error("Unknown request type: " + requestType + " is received.");
             }
         } catch (RemoteException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
     }
 
-    public synchronized void addToMsgStore(String key, String value) throws RemoteException {
+    public synchronized void addTo(String key, String value) throws RemoteException {
         LOGGER.info("key is:" + key + " Value is:" + value);
-        MessageStoreHelper msgHelper = new MessageStoreHelper();
+        MsgStoreHelper msgHelper = new MsgStoreHelper();
         HashMap<String, String> retrievedMap = msgHelper.readHashMap();
         if (retrievedMap != null) {
             retrievedMap.put(key, value);
@@ -109,9 +100,9 @@ public class ClientServerInterfaceImpl extends UnicastRemoteObject implements Cl
 
     }
 
-    public void getFromMsgStore(String key) throws RemoteException {
+    public void getFrom(String key) throws RemoteException {
         LOGGER.debug(" get From Data Store.. key is:" + key);
-        MessageStoreHelper msgHelper = new MessageStoreHelper();
+        MsgStoreHelper msgHelper = new MsgStoreHelper();
         HashMap<String, String> retrievedMap = msgHelper.readHashMap();
         if (retrievedMap != null) {
             LOGGER.debug("Retrieved Map size: "+retrievedMap.size());
@@ -131,9 +122,9 @@ public class ClientServerInterfaceImpl extends UnicastRemoteObject implements Cl
 
     }
 
-    public synchronized void deleteFromMsgStore(String key) throws RemoteException {
-        LOGGER.debug(" delete From  Data Store key is:" + key);
-        MessageStoreHelper msgHelper = new MessageStoreHelper();
+    public synchronized void deleteFrom(String key) throws RemoteException {
+        LOGGER.debug("Delete From Data Store key is:" + key);
+        MsgStoreHelper msgHelper = new MsgStoreHelper();
         HashMap<String, String> retrievedMap = msgHelper.readHashMap();
         if (retrievedMap != null) {
             LOGGER.debug("Retrieved Map size: "+retrievedMap.size());
@@ -158,12 +149,6 @@ public class ClientServerInterfaceImpl extends UnicastRemoteObject implements Cl
     }
 
     public static void main(String[] args) {
-        try {
-
-        } catch (Exception ex) {
-
-        }
 
     }
-
 }

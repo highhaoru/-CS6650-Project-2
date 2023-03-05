@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="240d1043-76bb-4dad-bc28-de9d86d8ba7b" name="Changes" comment="first commit" />
+    <list default="true" id="240d1043-76bb-4dad-bc28-de9d86d8ba7b" name="Changes" comment="first commit">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/rpc/ClientServerInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Check.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Check.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/RpcProgramming.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/Rpc.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/allclasrpc/Client1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rpc/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/allclasrpc/ClientServerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/allclasrpc/ClientServerInterfaceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rpc/ClientServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/allclasrpc/DataStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rpc/MsgStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/allclasrpc/RmiRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/rpc/RmiRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handle/MessageStoreHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/MsgStoreHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/handle/RpcPropertiesHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/handler/RpcHandler.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +60,76 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\IdeaProjects\Project2-6650\src" />
     </key>
+  </component>
+  <component name="RunManager" selected="Application.Check">
+    <configuration name="Check" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Check" />
+      <module name="Project2-6650" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Client" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rpc.Client" />
+      <module name="Project2-6650" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rpc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ClientServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rpc.ClientServer" />
+      <module name="Project2-6650" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rpc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MsgStoreHelper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="handler.MsgStoreHelper" />
+      <module name="Project2-6650" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="handler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RmiRegister" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="rpc.RmiRegister" />
+      <module name="Project2-6650" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rpc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Check" />
+        <item itemvalue="Application.MsgStoreHelper" />
+        <item itemvalue="Application.RmiRegister" />
+        <item itemvalue="Application.ClientServerInterfaceImpl" />
+        <item itemvalue="Application.Client1" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

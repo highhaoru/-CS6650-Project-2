@@ -1,9 +1,6 @@
-package allclasrpc;
+package rpc;
 
-import java.net.MalformedURLException;
-import java.rmi.Naming;
 import java.rmi.NotBoundException;
-import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -12,9 +9,9 @@ import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class Client1 {
+public class Client {
 
-    private static final Logger LOGGER = LogManager.getLogger(Client1.class);
+    private static final Logger LOGGER = LogManager.getLogger(Client.class);
 
     public static void main(String[] args) {
 
@@ -23,8 +20,8 @@ public class Client1 {
             System.exit(1);
         }
 
-        String hostName = args[0].toString();
-        int portNumber = Integer.valueOf(args[1]).intValue();
+        String hostName = args[0];
+        int portNumber = Integer.parseInt(args[1]);
 
         try {
             // Take the Data set size from user
@@ -42,7 +39,7 @@ public class Client1 {
 
             // get message
             String msgValue = "";
-            if ("" != requestType && requestType.equalsIgnoreCase("PUT")) {
+            if (!"".equals(requestType) && requestType.equalsIgnoreCase("PUT")) {
                 System.out.println("Please Enter Data for Key: " + key);
                 msgValue = in.nextLine();
             }
@@ -52,28 +49,24 @@ public class Client1 {
             ClientServerInterface messageServer = (ClientServerInterface) registry
                     .lookup("ClientServerInterfaceImpl");
 
-            if ("" != requestType && requestType.equalsIgnoreCase("PUT")) {
+            if (!"".equals(requestType) && requestType.equalsIgnoreCase("PUT")) {
 
-                messageServer.processPutRequest(key, msgValue);
-                LOGGER.info("Put request done. See log ");
+                messageServer.put(key, msgValue);
+                LOGGER.info("Put request is completed. Please check the log");
 
-            } else if ("" != requestType && requestType.equalsIgnoreCase("GET")) {
-                messageServer.processGetRequest(key);
-                LOGGER.info("Get request done. See log ");
+            } else if (!"".equals(requestType) && requestType.equalsIgnoreCase("GET")) {
+                messageServer.get(key);
+                LOGGER.info("Get request is completed. Please check the log");
 
-            } else if ("" != requestType && requestType.equalsIgnoreCase("DEL")) {
-                messageServer.processDeleteRequest(key);
-                LOGGER.info("Delete request done.");
+            } else if (!"".equals(requestType) && requestType.equalsIgnoreCase("DEL")) {
+                messageServer.delete(key);
+                LOGGER.info("Delete request is completed. Please check the log");
 
             } else {
                 LOGGER.error("Unknown request type: " + requestType);
             }
 
-        } catch (RemoteException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NotBoundException e) {
-            // TODO Auto-generated catch block
+        } catch (RemoteException | NotBoundException e) {
             e.printStackTrace();
         }
 

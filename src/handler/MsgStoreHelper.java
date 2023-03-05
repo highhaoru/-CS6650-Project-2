@@ -1,4 +1,4 @@
-package handle;
+package handler;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -19,21 +19,12 @@ import java.util.Map.Entry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class MessageStoreHelper {
-    private static final Logger LOGGER = LogManager.getLogger(MessageStoreHelper.class);
+public class MsgStoreHelper {
+    private static final Logger LOGGER = LogManager.getLogger(MsgStoreHelper.class);
 
     public void writeHashMap1(HashMap<String, Object> hashMap) {
-        // HashMap<String, Object> fileObj = new HashMap<String, Object>();
 
-        /*
-         * ArrayList<String> cols = new ArrayList<String>(); cols.add("a");
-         * cols.add("b"); cols.add("c");
-         */
-        String fileDirectory = RpcPropertiesHandler.getInstance().getProperty("MSG_STORE_LOCATION");
-
-        // String PATH = "/remote/dir/server/";
-        // String directoryName = PATH.concat(this.getClassName());
-        // String fileName = id + getTimeStamp() + ".txt";
+        String fileDirectory = RpcHandler.getInstance().getProperty("MSG_STORE_LOCATION");
 
         File directory = new File(String.valueOf(fileDirectory));
         if (!directory.exists()) {
@@ -42,18 +33,13 @@ public class MessageStoreHelper {
 
         File file = new File(fileDirectory + "/HashMapStore.txt");
 
-        // File file = new File(fileLocation);
         FileOutputStream f;
         try {
             f = new FileOutputStream(file);
             ObjectOutputStream s = new ObjectOutputStream(f);
             s.writeObject(hashMap);
             s.close();
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -62,7 +48,7 @@ public class MessageStoreHelper {
     public HashMap<String, Object> readHashMap1() {
         // HashMap<String, Object> fileObj = new HashMap<String, Object>();
 
-        String fileDirectory = RpcPropertiesHandler.getInstance().getProperty("MSG_STORE_LOCATION");
+        String fileDirectory = RpcHandler.getInstance().getProperty("MSG_STORE_LOCATION");
         File file = new File(fileDirectory + "/HashMapStore.txt");
         FileInputStream f;
         HashMap<String, Object> fileObj2 = null;
@@ -72,23 +58,17 @@ public class MessageStoreHelper {
             ObjectInputStream s = new ObjectInputStream(f);
             fileObj2 = (HashMap<String, Object>) s.readObject();
             if (fileObj2 != null) {
-                Iterator iterator = fileObj2.keySet().iterator();
 
-                while (iterator.hasNext()) {
-                    String key = iterator.next().toString();
-                    String value = fileObj2.get(key).toString();
-                    System.out.println(key + " " + value);
+                for (String item : fileObj2.keySet()) {
+                    String value = fileObj2.get(item).toString();
+                    System.out.println(item + " " + value);
                 }
             }
             s.close();
 
         } catch (FileNotFoundException e) {
             LOGGER.error("Message store file is not yet created.");
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return fileObj2;
@@ -96,7 +76,7 @@ public class MessageStoreHelper {
 
     public static void main(String... args) throws IOException, ClassNotFoundException {
         HashMap<String, Object> fileObj = new HashMap<String, Object>();
-        MessageStoreHelper helper = new MessageStoreHelper();
+        MsgStoreHelper helper = new MsgStoreHelper();
         // helper.writeHashMap(fileObj);
         // helper.readHashMap1();
     }
@@ -108,7 +88,7 @@ public class MessageStoreHelper {
         // create your filewriter and bufferedreader
         try {
 
-            String fileDirectory = RpcPropertiesHandler.getInstance().getProperty("MSG_STORE_LOCATION");
+            String fileDirectory = RpcHandler.getInstance().getProperty("MSG_STORE_LOCATION");
 
             // String PATH = "/remote/dir/server/";
             // String directoryName = PATH.concat(this.getClassName());
@@ -151,14 +131,14 @@ public class MessageStoreHelper {
             // lastly, close the file and end
             out.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }
 
     public HashMap<String, String> readHashMap() {
         //String csvFile = RpcPropertiesHandler.getInstance().getProperty("MSG_STORE_LOCATION");
-        String fileDirectory = RpcPropertiesHandler.getInstance().getProperty("MSG_STORE_LOCATION");
+        String fileDirectory = RpcHandler.getInstance().getProperty("MSG_STORE_LOCATION");
         File file = new File(fileDirectory + "/HashMapStore.txt");
         BufferedReader br = null;
         String line = "";

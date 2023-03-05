@@ -1,8 +1,7 @@
-package allclasrpc;
+package rpc;
 import java.util.HashMap;
-import java.util.Map;
 
-public class DataStore {
+public class MsgStore {
 
     private HashMap map;
 
