@@ -4,28 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="240d1043-76bb-4dad-bc28-de9d86d8ba7b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/log4j_core_2_19_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project2-6650.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Check.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/RpcProgramming.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/allclasrpc/Client1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/allclasrpc/ClientServerInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/allclasrpc/ClientServerInterfaceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/allclasrpc/DataStore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/allclasrpc/RmiRegister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handle/MessageStoreHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/handle/RpcPropertiesHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/log4j2.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/security.policy" afterDir="false" />
-    </list>
+    <list default="true" id="240d1043-76bb-4dad-bc28-de9d86d8ba7b" name="Changes" comment="first commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,6 +56,18 @@
       <option name="presentableId" value="Default" />
       <updated>1678035684367</updated>
     </task>
+    <task id="LOCAL-00001" summary="first commit">
+      <created>1678039888437</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1678039888437</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="first commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="first commit" />
   </component>
 </project>
